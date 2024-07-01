@@ -10,17 +10,29 @@
 # include "SDL.h"
 
 # include "map.h"
+# include "events.h"
+# include "menu.h"
 
-# define WINDOW_WIDTH 640
-# define WINDOW_HEIGHT 480 
+# define WINDOW_WIDTH 800
+# define WINDOW_HEIGHT 600 
 
-extern SDL_Surface *window_surface;
-extern SDL_Window *window;
+typedef struct s_SDLs{
+	SDL_Window		*window;
+	SDL_Surface		*window_surface;
+	SDL_Renderer	*renderer;
+}	t_SDLs;
 
-static struct s_gameEnv {
-	t_map	map;
-}	gameEnv;
+//* RunningState: 0 is close, 1 is Main Menu, 2 is raycast, 3 is level editor.
+typedef struct s_gameEnv {
+	t_map		map;
+	t_SDLs		sdl;
+	t_Menu		mainMenu;
+	t_Events	event;
+	int			RunningState;
+}	t_gameEnv;
 
-extern int running;
+extern t_gameEnv	*gameEnv;
+
+int		renderMain();
 
 #endif

@@ -21,7 +21,7 @@ LIB_DIR = lib
 SRCS := $(shell find $(SRC_DIR) -name '*.c')
 OBJS := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-LIB = lib/libft/libft.a -L$(PWD)/lib/sdl2/build -lSDL2
+LIB = lib/libft/libft.a -L$(PWD)/lib/sdl2/build -lSDL2 -lSDL2_ttf
 
 NAME = doom-nukem
 
@@ -37,7 +37,7 @@ endif
 
 CC = gcc
 CFLAGS += -g -Wall -Wextra
-CFLAGS += -I $(INC_DIR) -I lib/libft -I lib/sdl2/include/SDL3 -I lib/sdl2/build/include/SDL3 -I lib/sdl2/include -I lib/sdl2/build/include
+CFLAGS += -I $(INC_DIR) -I lib/libft -I lib/sdl2/include -I lib/sdl2/build/include -I lib/sdl2_ttf
 
 all: $(OBJ_DIR) $(LIB) $(NAME)
 
@@ -76,10 +76,12 @@ sdl_reset: sdl_del sdl_init
 # Delete SDL
 sdl_del:
 	@rm -rf lib/sdl2/build
+	@rm -rf lib/sdl2_ttf/build
 
 # Initialize SDL
 sdl_init:
 	@cmake -S lib/sdl2 -B lib/sdl2/build && cmake --build lib/sdl2/build
+	@cmake -S lib/sdl2_ttf -B lib/sdl2_ttf/build && cmake --build lib/sdl2_ttf/build
 
 clean:
 	@rm -rf $(OBJ_DIR)

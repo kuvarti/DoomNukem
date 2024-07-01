@@ -3,18 +3,20 @@
 #include "libft.h"
 #include "SDL.h"
 #include "SDL_events.h"
+#include "commonStructures.h"
 
 typedef struct s_KeyPress
 {
-    char forward;
-    char left;
-    char right;
-    char back;
-} t_KeyPress;
+	char forward;
+	char left;
+	char right;
+	char back;
+}	t_KeyPress;
 
-extern t_KeyPress g_tempKeypress;
-extern int running;
-// typedef struct s_
+typedef struct s_Events {
+	t_KeyPress  keyPressed;
+	void (* mouseButtonHandler)(t_2dVector);
+}	t_Events;
 
 int event_thread_func(void *);
 void keyEventKeyUp(SDL_Keycode);

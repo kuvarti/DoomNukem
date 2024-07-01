@@ -64,21 +64,21 @@ int	parseSector(char **mapLines) {
 			break;
 		}
 	}
-	gameEnv.map.sector = (t_sector *)getAndInitStruct(i - tmp, sizeof(t_sector), &initSector);
-	if (!gameEnv.map.sector) {
+	gameEnv->map.sector = (t_sector *)getAndInitStruct(i - tmp, sizeof(t_sector), &initSector);
+	if (!gameEnv->map.sector) {
 		return (!ft_printf("Some errors occurred while initializing Sectors."));
 	}
 	while (1) {
 		line = ft_split(mapLines[tmp++], ' ');
 		wallCount = ft_atoi(line[2]);
-		gameEnv.map.sector[sectorCursor].sectorNo = ft_atoi(line[0]);
-		gameEnv.map.sector[sectorCursor].wallCount = wallCount;
-		gameEnv.map.sector[sectorCursor].Floor.height = atof(line[3]);
-		gameEnv.map.sector[sectorCursor].Ceiling.height = atof(line[5]);
-		gameEnv.map.sector[sectorCursor].walls = parseWalls(mapLines, (i + 1) + ft_atoi(line[1]), wallCount);
-		if (wallCount != 0 && gameEnv.map.sector[sectorCursor].walls == NULL) 
-			ft_printf("Some errors occurred while parsing %d. sector walls. The program will denied error and continue.", gameEnv.map.sector[sectorCursor].sectorNo);
-		else if (wallCount > 0 && gameEnv.map.sector[sectorCursor].walls == NULL)
+		gameEnv->map.sector[sectorCursor].sectorNo = ft_atoi(line[0]);
+		gameEnv->map.sector[sectorCursor].wallCount = wallCount;
+		gameEnv->map.sector[sectorCursor].Floor.height = atof(line[3]);
+		gameEnv->map.sector[sectorCursor].Ceiling.height = atof(line[5]);
+		gameEnv->map.sector[sectorCursor].walls = parseWalls(mapLines, (i + 1) + ft_atoi(line[1]), wallCount);
+		if (wallCount != 0 && gameEnv->map.sector[sectorCursor].walls == NULL) 
+			ft_printf("Some errors occurred while parsing %d. sector walls. The program will denied error and continue.", gameEnv->map.sector[sectorCursor].sectorNo);
+		else if (wallCount > 0 && gameEnv->map.sector[sectorCursor].walls == NULL)
 			return 0;
 		if (tmp == i)
 			break;

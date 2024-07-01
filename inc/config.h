@@ -1,6 +1,9 @@
 #ifndef CONFIG_H
 # define CONFIG_H
 
-void sayHelloFromConfig(void);
+int		InitConfigs();
+
+void	initMainMenuButtons();
+void	initMainMenufont();
 
 #endif

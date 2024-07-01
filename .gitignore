@@ -5,4 +5,5 @@
 
 obj
 lib/sdl2
+lib/sdl2_ttf
 .idea
